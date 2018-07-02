@@ -18,21 +18,16 @@ Or install it yourself as:
 $ gem install middleman-gdpr
 ```
 
-Activate [Sprockets](https://github.com/middleman/middleman-sprockets):
+Activate [Sprockets](https://github.com/middleman/middleman-sprockets) and [I18n](https://middlemanapp.com/advanced/localization/):
 ```ruby
 # config.rb
 activate :sprockets
-```
-
-Activate [I18n](https://middlemanapp.com/advanced/localization/):
-```ruby
-# config.rb
 activate :i18n
 ```
 
-Add this to layout:
+Add this to the layout:
 ```ruby
-  <%= render 'gdpr/cookie_consent' %>
+  <%= gdpr %>
 ```
 
 Add this to javascripts:
