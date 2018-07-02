@@ -3,6 +3,8 @@ PATH
   specs:
     middleman-gdpr (0.1.0)
       middleman-core
+      middleman-sprockets
+      rake
 
 GEM
   remote: https://rubygems.org/
@@ -54,6 +56,9 @@ GEM
       servolux
       tilt (~> 2.0)
       uglifier (~> 3.0)
+    middleman-sprockets (4.1.1)
+      middleman-core (~> 4.0)
+      sprockets (>= 3.0)
     minitest (5.11.3)
     padrino-helpers (0.13.3.4)
       i18n (~> 0.6, >= 0.6.7)
@@ -64,6 +69,7 @@ GEM
     parallel (1.12.1)
     public_suffix (3.0.2)
     rack (2.0.5)
+    rake (12.3.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -73,6 +79,9 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     servolux (0.13.0)
+    sprockets (3.7.2)
+      concurrent-ruby (~> 1.0)
+      rack (> 1, < 3)
     thread_safe (0.3.6)
     tilt (2.0.8)
     tzinfo (1.2.5)

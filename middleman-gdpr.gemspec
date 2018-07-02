@@ -18,4 +18,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'middleman-core'
   s.add_dependency 'middleman-sprockets'
+  s.add_dependency 'rake'
 end
