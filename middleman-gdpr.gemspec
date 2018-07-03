@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{source,locales,lib,node_modules}/**/*", "LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency 'middleman-core'
+  s.add_dependency 'middleman'
   s.add_dependency 'middleman-sprockets'
-  s.add_dependency 'rake'
 end
