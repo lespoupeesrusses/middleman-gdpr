@@ -6,8 +6,8 @@ module Middleman
       # end
 
       def after_configuration
-        puts "\e[91mGDPR: Sprockets extension not found, GDPR extension has not been activated. Please activate Sprockets in config.rb:\nactivate :sprockets\e[39m\n" and return if sprockets.blank?
-        puts "\e[91mGDPR: I18n extension not found, GDPR extension has not been activated. Please activate I18n in config.rb:\nactivate :i18n\e[39m\n" and return if i18n.blank?
+        raise "\e[91mGDPR: Sprockets extension not activated. Please activate Sprockets in config.rb\e[39m" if sprockets.blank?
+        raise "\e[91mGDPR: I18n extension not activated. Please activate I18n in config.rb\e[39m" if i18n.blank?
 
         ['source/stylesheets', 'source/javascripts', 'node_modules'].each do |path|
           sprockets.environment.append_path root + path
