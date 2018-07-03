@@ -6,8 +6,8 @@ module Middleman
       # end
 
       def after_configuration
-        puts "\e[91mGDPR: Sprockets extension not found, GDPR extension has not been activated\e[39m" and return if sprockets.blank?
-        puts "\e[91mGDPR: I18n extension not found, GDPR extension has not been activated\e[39m" and return if i18n.blank?
+        puts "\e[91mGDPR: Sprockets extension not found, GDPR extension has not been activated. Please activate Sprockets in config.rb:\nactivate :sprockets\e[39m\n" and return if sprockets.blank?
+        puts "\e[91mGDPR: I18n extension not found, GDPR extension has not been activated. Please activate I18n in config.rb:\nactivate :i18n\e[39m\n" and return if i18n.blank?
 
         ['source/stylesheets', 'source/javascripts', 'node_modules'].each do |path|
           sprockets.environment.append_path root + path
@@ -17,23 +17,30 @@ module Middleman
       end
 
       def root
-        Pathname.new(__dir__) + '../..'
+        self.class.root
       end
 
       helpers do
-        def gdpr
-          <<~HTML
-            <div class="gdpr__cookie_consent js-gdpr__cookie_consent">
-              <div class="gdpr__cookie_consent__text">
-                #{t 'gdpr.cookie_consent.text'}
-                <br />
-                #{t 'gdpr.cookie_consent.learn_more_html', link: t('gdpr.privacy_policy')}
-              </div>
-              <div class="gdpr__cookie_consent__buttons">
-                <button class="gdpr__cookie_consent__buttons__ok js-gdpr__cookie_consent__buttons__ok"> #{t 'gdpr.cookie_consent.button' }</button>
-              </div>
-            </div>
-          HTML
+        def gdpr(partial)
+          template = Middleman::Gdpr::Extension.template_for partial
+          raise "GDPR: \"#{partial}\" partial doesn't exist" if template.blank?
+          return ERB.new(template).result binding
+        end
+      end
+
+      class << self
+        def root
+          Pathname.new(__dir__) + '../..'
+        end
+
+        def template_for(partial)
+          partial = File.basename(partial.to_s)
+            .sub(/\A_/, '')
+            .sub(/\.(html|erb|html\.erb)\z/, '')
+
+          path = root + "source/gdpr/_#{partial}.html.erb"
+
+          return File.read path if File.exists? path
         end
       end
 

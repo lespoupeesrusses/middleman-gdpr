@@ -27,7 +27,7 @@ activate :i18n
 
 Add this to the layout:
 ```ruby
-  <%= gdpr %>
+  <%= gdpr :cookie_consent %>
 ```
 
 Add this to javascripts:
@@ -38,6 +38,13 @@ Add this to javascripts:
 Add this to stylesheets:
 ```sass
 @import 'gdpr/cookie_consent'
+```
+
+If your site isn't localized but you want gdpr messages to be in a given language (default: English), just add the corresponding option when activating I18n:
+
+```ruby
+# config.rb
+activate :i18n, langs: [:fr]
 ```
 
 Set the privacy policy url in the locales.
