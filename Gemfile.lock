@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    middleman-gdpr (1.0.0)
+    middleman-gdpr (1.0.1)
       middleman
       middleman-sprockets
 
